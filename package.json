@@ -2,6 +2,7 @@
   "name": "github-action-template",
   "version": "0.0.0",
   "description": "Write your description here",
+  "type": "module",
   "author": {
     "name": "Lucas Nørgård",
     "email": "lucasnrgaard@gmail.com",
@@ -9,7 +10,7 @@
   },
   "packageManager": "pnpm@9.5.0",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "scripts": {
     "build": "rolldown --config ./rolldown.config.mjs",
     "lint": "eslint .",

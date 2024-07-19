@@ -8,6 +8,7 @@ export default defineConfig({
   output: {
     format: "cjs",
     exports: "named",
+    entryFileNames: "index.cjs",
   },
   resolve: {
     conditionNames: ["import"],
