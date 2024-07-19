@@ -1,6 +1,6 @@
 # github-action-template-rolldown
 
-An opinionated github actions template
+An opinionated GitHub Actions Template using [rolldown](https://rolldown.rs) for bundling.
 
 ## Try it now!
 
