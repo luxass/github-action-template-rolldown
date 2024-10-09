@@ -15,14 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.0
 
       - name: setup pnpm
         uses: pnpm/action-setup@v4.0.0
         id: pnpm-install
 
       - name: setup node
-        uses: actions/setup-node@v4.0.3
+        uses: actions/setup-node@v4.0.4
         with:
           node-version: 20
           cache: pnpm
@@ -44,7 +44,7 @@ jobs:
         id: diff
 
       - name: upload dist/ as an artifact
-        uses: actions/upload-artifact@v4.3.6
+        uses: actions/upload-artifact@v4.4.0
         if: ${{ failure() && steps.diff.conclusion == 'failure' }}
         with:
           name: dist
