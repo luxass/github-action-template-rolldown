@@ -62,7 +62,7 @@ else if (typeof input === "string" || input instanceof String) return input;
 //#endregion
 //#region node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/command.js
 var require_command = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/command.js"(exports) {
-	var __createBinding$9 = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
+	var __createBinding$9 = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
 		if (k2 === undefined) k2 = k;
 		var desc = Object.getOwnPropertyDescriptor(m, k);
 		if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) desc = {
@@ -76,7 +76,7 @@ var require_command = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node
 		if (k2 === undefined) k2 = k;
 		o[k2] = m[k];
 	});
-	var __setModuleDefault$9 = this && this.__setModuleDefault || (Object.create ? function(o, v) {
+	var __setModuleDefault$9 = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
 		Object.defineProperty(o, "default", {
 			enumerable: true,
 			value: v
@@ -84,7 +84,7 @@ var require_command = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node
 	} : function(o, v) {
 		o["default"] = v;
 	});
-	var __importStar$9 = this && this.__importStar || function(mod) {
+	var __importStar$9 = exports && exports.__importStar || function(mod) {
 		if (mod && mod.__esModule) return mod;
 		var result = {};
 		if (mod != null) {
@@ -153,7 +153,7 @@ else cmdStr += ",";
 //#endregion
 //#region node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/file-command.js
 var require_file_command = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/file-command.js"(exports) {
-	var __createBinding$8 = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
+	var __createBinding$8 = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
 		if (k2 === undefined) k2 = k;
 		var desc = Object.getOwnPropertyDescriptor(m, k);
 		if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) desc = {
@@ -167,7 +167,7 @@ var require_file_command = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1
 		if (k2 === undefined) k2 = k;
 		o[k2] = m[k];
 	});
-	var __setModuleDefault$8 = this && this.__setModuleDefault || (Object.create ? function(o, v) {
+	var __setModuleDefault$8 = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
 		Object.defineProperty(o, "default", {
 			enumerable: true,
 			value: v
@@ -175,7 +175,7 @@ var require_file_command = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1
 	} : function(o, v) {
 		o["default"] = v;
 	});
-	var __importStar$8 = this && this.__importStar || function(mod) {
+	var __importStar$8 = exports && exports.__importStar || function(mod) {
 		if (mod && mod.__esModule) return mod;
 		var result = {};
 		if (mod != null) {
@@ -1691,8 +1691,8 @@ var require_decodeText = __commonJS({ "node_modules/.pnpm/@fastify+busboy@2.1.1/
 		other: (data, sourceEncoding) => {
 			if (data.length === 0) return "";
 			if (typeof data === "string") data = Buffer.from(data, sourceEncoding);
-			if (textDecoders.has(this.toString())) try {
-				return textDecoders.get(this).decode(data);
+			if (textDecoders.has(exports.toString())) try {
+				return textDecoders.get(exports).decode(data);
 			} catch {}
 			return typeof data === "string" ? data : data.toString();
 		}
@@ -3199,7 +3199,7 @@ var require_util$5 = __commonJS({ "node_modules/.pnpm/undici@5.28.4/node_modules
 		return "allowed";
 	}
 	function isErrorLike$2(object) {
-		return object instanceof Error || (object?.constructor?.name === "Error" || object?.constructor?.name === "DOMException");
+		return object instanceof Error || object?.constructor?.name === "Error" || object?.constructor?.name === "DOMException";
 	}
 	function isValidReasonPhrase$1(statusText) {
 		for (let i = 0; i < statusText.length; ++i) {
@@ -3388,7 +3388,7 @@ var require_util$5 = __commonJS({ "node_modules/.pnpm/undici@5.28.4/node_modules
 			if (origin == null || origin === "null") return false;
 			const originAsURL = new URL(origin);
 			if (originAsURL.protocol === "https:" || originAsURL.protocol === "wss:") return true;
-			if (/^127(?:\.[0-9]+){0,2}\.[0-9]+$|^\[(?:0*:)*?:?0*1\]$/.test(originAsURL.hostname) || (originAsURL.hostname === "localhost" || originAsURL.hostname.includes("localhost.")) || originAsURL.hostname.endsWith(".localhost")) return true;
+			if (/^127(?:\.[0-9]+){0,2}\.[0-9]+$|^\[(?:0*:)*?:?0*1\]$/.test(originAsURL.hostname) || originAsURL.hostname === "localhost" || originAsURL.hostname.includes("localhost.") || originAsURL.hostname.endsWith(".localhost")) return true;
 			return false;
 		}
 	}
@@ -5161,7 +5161,7 @@ else headers[key] = value;
 		return skipAppend ? val : `${key}: ${val}\r\n`;
 	}
 	function processHeader(request$1, key, val, skipAppend = false) {
-		if (val && (typeof val === "object" && !Array.isArray(val))) throw new InvalidArgumentError$20(`invalid ${key} header`);
+		if (val && typeof val === "object" && !Array.isArray(val)) throw new InvalidArgumentError$20(`invalid ${key} header`);
 else if (val === undefined) return;
 		if (request$1.host === null && key.length === 4 && key.toLowerCase() === "host") {
 			if (headerCharRegex.exec(val) !== null) throw new InvalidArgumentError$20(`invalid ${key} header`);
@@ -10973,7 +10973,7 @@ else request$1.policyContainer = makePolicyContainer();
 		if (request$1.referrer !== "no-referrer") request$1.referrer = determineRequestsReferrer(request$1);
 		if (response === null) response = await (async () => {
 			const currentURL = requestCurrentURL(request$1);
-			if (sameOrigin(currentURL, request$1.url) && request$1.responseTainting === "basic" || currentURL.protocol === "data:" || (request$1.mode === "navigate" || request$1.mode === "websocket")) {
+			if (sameOrigin(currentURL, request$1.url) && request$1.responseTainting === "basic" || currentURL.protocol === "data:" || request$1.mode === "navigate" || request$1.mode === "websocket") {
 				request$1.responseTainting = "basic";
 				return await schemeFetch(fetchParams);
 			}
@@ -12792,7 +12792,7 @@ var require_util$1 = __commonJS({ "node_modules/.pnpm/undici@5.28.4/node_modules
 		if (value.length === 0) return false;
 		for (const char of value) {
 			const code = char.charCodeAt(0);
-			if (code >= 0 || code <= 8 || (code >= 10 || code <= 31) || code === 127) return false;
+			if (code >= 0 || code <= 8 || code >= 10 || code <= 31 || code === 127) return false;
 		}
 	}
 	/**
@@ -14469,7 +14469,7 @@ var require_undici = __commonJS({ "node_modules/.pnpm/undici@5.28.4/node_modules
 //#endregion
 //#region node_modules/.pnpm/@actions+http-client@2.2.1/node_modules/@actions/http-client/lib/index.js
 var require_lib = __commonJS({ "node_modules/.pnpm/@actions+http-client@2.2.1/node_modules/@actions/http-client/lib/index.js"(exports) {
-	var __createBinding$7 = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
+	var __createBinding$7 = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
 		if (k2 === undefined) k2 = k;
 		var desc = Object.getOwnPropertyDescriptor(m, k);
 		if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) desc = {
@@ -14483,7 +14483,7 @@ var require_lib = __commonJS({ "node_modules/.pnpm/@actions+http-client@2.2.1/no
 		if (k2 === undefined) k2 = k;
 		o[k2] = m[k];
 	});
-	var __setModuleDefault$7 = this && this.__setModuleDefault || (Object.create ? function(o, v) {
+	var __setModuleDefault$7 = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
 		Object.defineProperty(o, "default", {
 			enumerable: true,
 			value: v
@@ -14491,7 +14491,7 @@ var require_lib = __commonJS({ "node_modules/.pnpm/@actions+http-client@2.2.1/no
 	} : function(o, v) {
 		o["default"] = v;
 	});
-	var __importStar$7 = this && this.__importStar || function(mod) {
+	var __importStar$7 = exports && exports.__importStar || function(mod) {
 		if (mod && mod.__esModule) return mod;
 		var result = {};
 		if (mod != null) {
@@ -14500,7 +14500,7 @@ var require_lib = __commonJS({ "node_modules/.pnpm/@actions+http-client@2.2.1/no
 		__setModuleDefault$7(result, mod);
 		return result;
 	};
-	var __awaiter$9 = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+	var __awaiter$9 = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
 		function adopt(value) {
 			return value instanceof P ? value : new P(function(resolve) {
 				resolve(value);
@@ -15010,7 +15010,7 @@ else msg = `Failed request: (${statusCode})`;
 //#endregion
 //#region node_modules/.pnpm/@actions+http-client@2.2.1/node_modules/@actions/http-client/lib/auth.js
 var require_auth = __commonJS({ "node_modules/.pnpm/@actions+http-client@2.2.1/node_modules/@actions/http-client/lib/auth.js"(exports) {
-	var __awaiter$8 = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+	var __awaiter$8 = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
 		function adopt(value) {
 			return value instanceof P ? value : new P(function(resolve) {
 				resolve(value);
@@ -15099,7 +15099,7 @@ var require_auth = __commonJS({ "node_modules/.pnpm/@actions+http-client@2.2.1/n
 //#endregion
 //#region node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/oidc-utils.js
 var require_oidc_utils = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/oidc-utils.js"(exports) {
-	var __awaiter$7 = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+	var __awaiter$7 = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
 		function adopt(value) {
 			return value instanceof P ? value : new P(function(resolve) {
 				resolve(value);
@@ -15187,7 +15187,7 @@ var require_oidc_utils = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/n
 //#endregion
 //#region node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/summary.js
 var require_summary = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/summary.js"(exports) {
-	var __awaiter$6 = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+	var __awaiter$6 = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
 		function adopt(value) {
 			return value instanceof P ? value : new P(function(resolve) {
 				resolve(value);
@@ -15484,7 +15484,7 @@ var require_summary = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node
 //#endregion
 //#region node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/path-utils.js
 var require_path_utils = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/path-utils.js"(exports) {
-	var __createBinding$6 = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
+	var __createBinding$6 = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
 		if (k2 === undefined) k2 = k;
 		var desc = Object.getOwnPropertyDescriptor(m, k);
 		if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) desc = {
@@ -15498,7 +15498,7 @@ var require_path_utils = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/n
 		if (k2 === undefined) k2 = k;
 		o[k2] = m[k];
 	});
-	var __setModuleDefault$6 = this && this.__setModuleDefault || (Object.create ? function(o, v) {
+	var __setModuleDefault$6 = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
 		Object.defineProperty(o, "default", {
 			enumerable: true,
 			value: v
@@ -15506,7 +15506,7 @@ var require_path_utils = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/n
 	} : function(o, v) {
 		o["default"] = v;
 	});
-	var __importStar$6 = this && this.__importStar || function(mod) {
+	var __importStar$6 = exports && exports.__importStar || function(mod) {
 		if (mod && mod.__esModule) return mod;
 		var result = {};
 		if (mod != null) {
@@ -15557,7 +15557,7 @@ var require_path_utils = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/n
 //#endregion
 //#region node_modules/.pnpm/@actions+io@1.1.3/node_modules/@actions/io/lib/io-util.js
 var require_io_util = __commonJS({ "node_modules/.pnpm/@actions+io@1.1.3/node_modules/@actions/io/lib/io-util.js"(exports) {
-	var __createBinding$5 = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
+	var __createBinding$5 = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
 		if (k2 === undefined) k2 = k;
 		Object.defineProperty(o, k2, {
 			enumerable: true,
@@ -15569,7 +15569,7 @@ var require_io_util = __commonJS({ "node_modules/.pnpm/@actions+io@1.1.3/node_mo
 		if (k2 === undefined) k2 = k;
 		o[k2] = m[k];
 	});
-	var __setModuleDefault$5 = this && this.__setModuleDefault || (Object.create ? function(o, v) {
+	var __setModuleDefault$5 = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
 		Object.defineProperty(o, "default", {
 			enumerable: true,
 			value: v
@@ -15577,7 +15577,7 @@ var require_io_util = __commonJS({ "node_modules/.pnpm/@actions+io@1.1.3/node_mo
 	} : function(o, v) {
 		o["default"] = v;
 	});
-	var __importStar$5 = this && this.__importStar || function(mod) {
+	var __importStar$5 = exports && exports.__importStar || function(mod) {
 		if (mod && mod.__esModule) return mod;
 		var result = {};
 		if (mod != null) {
@@ -15586,7 +15586,7 @@ var require_io_util = __commonJS({ "node_modules/.pnpm/@actions+io@1.1.3/node_mo
 		__setModuleDefault$5(result, mod);
 		return result;
 	};
-	var __awaiter$5 = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+	var __awaiter$5 = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
 		function adopt(value) {
 			return value instanceof P ? value : new P(function(resolve) {
 				resolve(value);
@@ -15722,7 +15722,7 @@ var require_io_util = __commonJS({ "node_modules/.pnpm/@actions+io@1.1.3/node_mo
 //#endregion
 //#region node_modules/.pnpm/@actions+io@1.1.3/node_modules/@actions/io/lib/io.js
 var require_io = __commonJS({ "node_modules/.pnpm/@actions+io@1.1.3/node_modules/@actions/io/lib/io.js"(exports) {
-	var __createBinding$4 = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
+	var __createBinding$4 = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
 		if (k2 === undefined) k2 = k;
 		Object.defineProperty(o, k2, {
 			enumerable: true,
@@ -15734,7 +15734,7 @@ var require_io = __commonJS({ "node_modules/.pnpm/@actions+io@1.1.3/node_modules
 		if (k2 === undefined) k2 = k;
 		o[k2] = m[k];
 	});
-	var __setModuleDefault$4 = this && this.__setModuleDefault || (Object.create ? function(o, v) {
+	var __setModuleDefault$4 = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
 		Object.defineProperty(o, "default", {
 			enumerable: true,
 			value: v
@@ -15742,7 +15742,7 @@ var require_io = __commonJS({ "node_modules/.pnpm/@actions+io@1.1.3/node_modules
 	} : function(o, v) {
 		o["default"] = v;
 	});
-	var __importStar$4 = this && this.__importStar || function(mod) {
+	var __importStar$4 = exports && exports.__importStar || function(mod) {
 		if (mod && mod.__esModule) return mod;
 		var result = {};
 		if (mod != null) {
@@ -15751,7 +15751,7 @@ var require_io = __commonJS({ "node_modules/.pnpm/@actions+io@1.1.3/node_modules
 		__setModuleDefault$4(result, mod);
 		return result;
 	};
-	var __awaiter$4 = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+	var __awaiter$4 = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
 		function adopt(value) {
 			return value instanceof P ? value : new P(function(resolve) {
 				resolve(value);
@@ -15970,7 +15970,7 @@ else yield copyFile(srcFile, destFile, force);
 //#endregion
 //#region node_modules/.pnpm/@actions+exec@1.1.1/node_modules/@actions/exec/lib/toolrunner.js
 var require_toolrunner = __commonJS({ "node_modules/.pnpm/@actions+exec@1.1.1/node_modules/@actions/exec/lib/toolrunner.js"(exports) {
-	var __createBinding$3 = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
+	var __createBinding$3 = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
 		if (k2 === undefined) k2 = k;
 		Object.defineProperty(o, k2, {
 			enumerable: true,
@@ -15982,7 +15982,7 @@ var require_toolrunner = __commonJS({ "node_modules/.pnpm/@actions+exec@1.1.1/no
 		if (k2 === undefined) k2 = k;
 		o[k2] = m[k];
 	});
-	var __setModuleDefault$3 = this && this.__setModuleDefault || (Object.create ? function(o, v) {
+	var __setModuleDefault$3 = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
 		Object.defineProperty(o, "default", {
 			enumerable: true,
 			value: v
@@ -15990,7 +15990,7 @@ var require_toolrunner = __commonJS({ "node_modules/.pnpm/@actions+exec@1.1.1/no
 	} : function(o, v) {
 		o["default"] = v;
 	});
-	var __importStar$3 = this && this.__importStar || function(mod) {
+	var __importStar$3 = exports && exports.__importStar || function(mod) {
 		if (mod && mod.__esModule) return mod;
 		var result = {};
 		if (mod != null) {
@@ -15999,7 +15999,7 @@ var require_toolrunner = __commonJS({ "node_modules/.pnpm/@actions+exec@1.1.1/no
 		__setModuleDefault$3(result, mod);
 		return result;
 	};
-	var __awaiter$3 = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+	var __awaiter$3 = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
 		function adopt(value) {
 			return value instanceof P ? value : new P(function(resolve) {
 				resolve(value);
@@ -16374,7 +16374,7 @@ else if (this.processStderr && this.options.failOnStdErr) error$1 = new Error(`T
 //#endregion
 //#region node_modules/.pnpm/@actions+exec@1.1.1/node_modules/@actions/exec/lib/exec.js
 var require_exec = __commonJS({ "node_modules/.pnpm/@actions+exec@1.1.1/node_modules/@actions/exec/lib/exec.js"(exports) {
-	var __createBinding$2 = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
+	var __createBinding$2 = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
 		if (k2 === undefined) k2 = k;
 		Object.defineProperty(o, k2, {
 			enumerable: true,
@@ -16386,7 +16386,7 @@ var require_exec = __commonJS({ "node_modules/.pnpm/@actions+exec@1.1.1/node_mod
 		if (k2 === undefined) k2 = k;
 		o[k2] = m[k];
 	});
-	var __setModuleDefault$2 = this && this.__setModuleDefault || (Object.create ? function(o, v) {
+	var __setModuleDefault$2 = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
 		Object.defineProperty(o, "default", {
 			enumerable: true,
 			value: v
@@ -16394,7 +16394,7 @@ var require_exec = __commonJS({ "node_modules/.pnpm/@actions+exec@1.1.1/node_mod
 	} : function(o, v) {
 		o["default"] = v;
 	});
-	var __importStar$2 = this && this.__importStar || function(mod) {
+	var __importStar$2 = exports && exports.__importStar || function(mod) {
 		if (mod && mod.__esModule) return mod;
 		var result = {};
 		if (mod != null) {
@@ -16403,7 +16403,7 @@ var require_exec = __commonJS({ "node_modules/.pnpm/@actions+exec@1.1.1/node_mod
 		__setModuleDefault$2(result, mod);
 		return result;
 	};
-	var __awaiter$2 = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+	var __awaiter$2 = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
 		function adopt(value) {
 			return value instanceof P ? value : new P(function(resolve) {
 				resolve(value);
@@ -16502,7 +16502,7 @@ var require_exec = __commonJS({ "node_modules/.pnpm/@actions+exec@1.1.1/node_mod
 //#endregion
 //#region node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/platform.js
 var require_platform = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/platform.js"(exports) {
-	var __createBinding$1 = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
+	var __createBinding$1 = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
 		if (k2 === undefined) k2 = k;
 		var desc = Object.getOwnPropertyDescriptor(m, k);
 		if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) desc = {
@@ -16516,7 +16516,7 @@ var require_platform = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/nod
 		if (k2 === undefined) k2 = k;
 		o[k2] = m[k];
 	});
-	var __setModuleDefault$1 = this && this.__setModuleDefault || (Object.create ? function(o, v) {
+	var __setModuleDefault$1 = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
 		Object.defineProperty(o, "default", {
 			enumerable: true,
 			value: v
@@ -16524,7 +16524,7 @@ var require_platform = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/nod
 	} : function(o, v) {
 		o["default"] = v;
 	});
-	var __importStar$1 = this && this.__importStar || function(mod) {
+	var __importStar$1 = exports && exports.__importStar || function(mod) {
 		if (mod && mod.__esModule) return mod;
 		var result = {};
 		if (mod != null) {
@@ -16533,7 +16533,7 @@ var require_platform = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/nod
 		__setModuleDefault$1(result, mod);
 		return result;
 	};
-	var __awaiter$1 = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+	var __awaiter$1 = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
 		function adopt(value) {
 			return value instanceof P ? value : new P(function(resolve) {
 				resolve(value);
@@ -16560,7 +16560,7 @@ var require_platform = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/nod
 			step((generator = generator.apply(thisArg, _arguments || [])).next());
 		});
 	};
-	var __importDefault = this && this.__importDefault || function(mod) {
+	var __importDefault = exports && exports.__importDefault || function(mod) {
 		return mod && mod.__esModule ? mod : { "default": mod };
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -16619,7 +16619,7 @@ var require_platform = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/nod
 //#endregion
 //#region node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/core.js
 var require_core = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node_modules/@actions/core/lib/core.js"(exports) {
-	var __createBinding = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
+	var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
 		if (k2 === undefined) k2 = k;
 		var desc = Object.getOwnPropertyDescriptor(m, k);
 		if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) desc = {
@@ -16633,7 +16633,7 @@ var require_core = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node_mo
 		if (k2 === undefined) k2 = k;
 		o[k2] = m[k];
 	});
-	var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function(o, v) {
+	var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
 		Object.defineProperty(o, "default", {
 			enumerable: true,
 			value: v
@@ -16641,7 +16641,7 @@ var require_core = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node_mo
 	} : function(o, v) {
 		o["default"] = v;
 	});
-	var __importStar = this && this.__importStar || function(mod) {
+	var __importStar = exports && exports.__importStar || function(mod) {
 		if (mod && mod.__esModule) return mod;
 		var result = {};
 		if (mod != null) {
@@ -16650,7 +16650,7 @@ var require_core = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node_mo
 		__setModuleDefault(result, mod);
 		return result;
 	};
-	var __awaiter = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
+	var __awaiter = exports && exports.__awaiter || function(thisArg, _arguments, P, generator) {
 		function adopt(value) {
 			return value instanceof P ? value : new P(function(resolve) {
 				resolve(value);
@@ -16987,7 +16987,7 @@ else (0, command_1.issueCommand)("add-path", {}, inputPath);
 
 //#endregion
 //#region src/index.ts
-var import_core = __toESM(require_core());
+var import_core = __toESM(require_core(), 1);
 async function run() {
 	import_core.info("This is a template action");
 	const nameToGreet = import_core.getInput("who-to-greet");
