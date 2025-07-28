@@ -382,7 +382,7 @@ var require_tunnel$1 = __commonJS({ "node_modules/.pnpm/tunnel@0.0.6/node_module
 			if (res.statusCode !== 200) {
 				debug$1("tunneling socket could not be established, statusCode=%d", res.statusCode);
 				socket.destroy();
-				var error$1 = new Error("tunneling socket could not be established, statusCode=" + res.statusCode);
+				var error$1 = /* @__PURE__ */ new Error("tunneling socket could not be established, statusCode=" + res.statusCode);
 				error$1.code = "ECONNRESET";
 				options.request.emit("error", error$1);
 				self.removeSocket(placeholder);
@@ -391,7 +391,7 @@ var require_tunnel$1 = __commonJS({ "node_modules/.pnpm/tunnel@0.0.6/node_module
 			if (head.length > 0) {
 				debug$1("got illegal response body from proxy");
 				socket.destroy();
-				var error$1 = new Error("got illegal response body from proxy");
+				var error$1 = /* @__PURE__ */ new Error("got illegal response body from proxy");
 				error$1.code = "ECONNRESET";
 				options.request.emit("error", error$1);
 				self.removeSocket(placeholder);
@@ -404,7 +404,7 @@ var require_tunnel$1 = __commonJS({ "node_modules/.pnpm/tunnel@0.0.6/node_module
 		function onError$1(cause) {
 			connectReq.removeAllListeners();
 			debug$1("tunneling socket could not be established, cause=%s\n", cause.message, cause.stack);
-			var error$1 = new Error("tunneling socket could not be established, cause=" + cause.message);
+			var error$1 = /* @__PURE__ */ new Error("tunneling socket could not be established, cause=" + cause.message);
 			error$1.code = "ECONNRESET";
 			options.request.emit("error", error$1);
 			self.removeSocket(placeholder);
@@ -1091,7 +1091,7 @@ var require_util$6 = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 		if (!signal) return;
 		if (typeof signal.throwIfAborted === "function") signal.throwIfAborted();
 		else if (signal.aborted) {
-			const err = new Error("The operation was aborted");
+			const err = /* @__PURE__ */ new Error("The operation was aborted");
 			err.name = "AbortError";
 			throw err;
 		}
@@ -1506,10 +1506,10 @@ var require_Dicer = __commonJS({ "node_modules/.pnpm/@fastify+busboy@2.1.1/node_
 			if (!this._finished) {
 				const self = this;
 				process.nextTick(function() {
-					self.emit("error", new Error("Unexpected end of multipart data"));
+					self.emit("error", /* @__PURE__ */ new Error("Unexpected end of multipart data"));
 					if (self._part && !self._ignoreData) {
 						const type = self._isPreamble ? "Preamble" : "Part";
-						self._part.emit("error", new Error(type + " terminated early due to unexpected end of multipart data"));
+						self._part.emit("error", /* @__PURE__ */ new Error(type + " terminated early due to unexpected end of multipart data"));
 						self._part.push(null);
 						process.nextTick(function() {
 							self._realFinish = true;
@@ -3411,6 +3411,7 @@ var require_util$5 = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 	* @param {string} metadataList
 	*/
 	function bytesMatch$1(bytes, metadataList) {
+		/* istanbul ignore if: only if node is built with --without-ssl */
 		if (crypto$2 === void 0) return true;
 		const parsedMetadata = parseMetadata(metadataList);
 		if (parsedMetadata === "no metadata") return true;
@@ -3767,7 +3768,7 @@ var require_webidl = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 	webidl$14.util = {};
 	webidl$14.errors = {};
 	webidl$14.errors.exception = function(message) {
-		return new TypeError(`${message.header}: ${message.message}`);
+		return /* @__PURE__ */ new TypeError(`${message.header}: ${message.message}`);
 	};
 	webidl$14.errors.conversionFailed = function(context) {
 		const plural = context.types.length === 1 ? "" : " one of";
@@ -4158,17 +4159,12 @@ var require_dataURL = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_module
 		const mimeType = {
 			type: typeLowercase,
 			subtype: subtypeLowercase,
-			parameters: new Map(),
+			parameters: /* @__PURE__ */ new Map(),
 			essence: `${typeLowercase}/${subtypeLowercase}`
 		};
 		while (position.position < input.length) {
 			position.position++;
-			collectASequenceOfCodePoints(
-				// https://fetch.spec.whatwg.org/#http-whitespace
-				(char) => HTTP_WHITESPACE_REGEX.test(char),
-				input,
-				position
-);
+			collectASequenceOfCodePoints((char) => HTTP_WHITESPACE_REGEX.test(char), input, position);
 			let parameterName = collectASequenceOfCodePoints((char) => char !== ";" && char !== "=", input, position);
 			parameterName = parameterName.toLowerCase();
 			if (position.position < input.length) {
@@ -4729,9 +4725,13 @@ Content-Type: ${value.type || "application/octet-stream"}\r\n\r\n`);
 		return [body, type];
 	}
 	function safelyExtractBody$1(object, keepalive = false) {
-		if (!ReadableStream$2) ReadableStream$2 = require("stream/web").ReadableStream;
+		if (!ReadableStream$2)
+ // istanbul ignore next
+		ReadableStream$2 = require("stream/web").ReadableStream;
 		if (object instanceof ReadableStream$2) {
+			// istanbul ignore next
 			assert$17(!util$15.isDisturbed(object), "The body has already been consumed.");
+			// istanbul ignore next
 			assert$17(!object.locked, "The stream is locked.");
 		}
 		return extractBody$3(object, keepalive);
@@ -4844,7 +4844,8 @@ Content-Type: ${value.type || "application/octet-stream"}\r\n\r\n`);
 						text += streamingDecoder.decode();
 						entries = new URLSearchParams(text);
 					} catch (err) {
-						throw Object.assign(new TypeError(), { cause: err });
+						// istanbul ignore next: Unclear when new URLSearchParams can fail on a string.
+						throw Object.assign(/* @__PURE__ */ new TypeError(), { cause: err });
 					}
 					const formData = new FormData$1();
 					for (const [name, value] of entries) formData.append(name, value);
@@ -5360,7 +5361,7 @@ var require_connect = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_module
 	if (global.FinalizationRegistry && !process.env.NODE_V8_COVERAGE) SessionCache = class WeakSessionCache {
 		constructor(maxCachedSessions) {
 			this._maxCachedSessions = maxCachedSessions;
-			this._sessionCache = new Map();
+			this._sessionCache = /* @__PURE__ */ new Map();
 			this._sessionRegistry = new global.FinalizationRegistry((key) => {
 				if (this._sessionCache.size < this._maxCachedSessions) return;
 				const ref = this._sessionCache.get(key);
@@ -5380,7 +5381,7 @@ var require_connect = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_module
 	else SessionCache = class SimpleSessionCache {
 		constructor(maxCachedSessions) {
 			this._maxCachedSessions = maxCachedSessions;
-			this._sessionCache = new Map();
+			this._sessionCache = /* @__PURE__ */ new Map();
 		}
 		get(sessionKey) {
 			return this._sessionCache.get(sessionKey);
@@ -6026,6 +6027,9 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 		channels$2.connectError = { hasSubscribers: false };
 		channels$2.connected = { hasSubscribers: false };
 	}
+	/**
+	* @type {import('../types/client').default}
+	*/
 	var Client$4 = class extends DispatcherBase$3 {
 		/**
 		*
@@ -6123,6 +6127,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 			const socket = this[kSocket];
 			return socket && (socket[kReset] || socket[kWriting] || socket[kBlocking]) || this[kSize$4] >= (this[kPipelining] || 1) || this[kPending$2] > 0;
 		}
+		/* istanbul ignore: only used for test */
 		[kConnect](cb) {
 			connect$1(this);
 			this.once("connect", cb);
@@ -6216,10 +6221,12 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 		try {
 			mod = await WebAssembly.compile(Buffer.from(require_llhttp_simd_wasm(), "base64"));
 		} catch (e) {
+			/* istanbul ignore next */
 			mod = await WebAssembly.compile(Buffer.from(llhttpWasmData || require_llhttp_wasm(), "base64"));
 		}
 		return await WebAssembly.instantiate(mod, { env: {
 			wasm_on_url: (p, at, len) => {
+				/* istanbul ignore next */
 				return 0;
 			},
 			wasm_on_status: (p, at, len) => {
@@ -6297,10 +6304,12 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 				timers.clearTimeout(this.timeout);
 				if (value) {
 					this.timeout = timers.setTimeout(onParserTimeout, value, this);
+					// istanbul ignore else: only for jest
 					if (this.timeout.unref) this.timeout.unref();
 				} else this.timeout = null;
 				this.timeoutValue = value;
 			} else if (this.timeout) {
+				// istanbul ignore else: only for jest
 				if (this.timeout.refresh) this.timeout.refresh();
 			}
 		}
@@ -6311,6 +6320,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 			this.llhttp.llhttp_resume(this.ptr);
 			assert$13(this.timeoutType === TIMEOUT_BODY);
 			if (this.timeout) {
+				// istanbul ignore else: only for jest
 				if (this.timeout.refresh) this.timeout.refresh();
 			}
 			this.paused = false;
@@ -6342,6 +6352,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 					currentParser = this;
 					ret = llhttp.llhttp_execute(this.ptr, currentBufferPtr, data.length);
 				} catch (err) {
+					/* istanbul ignore next: difficult to make a test case for */
 					throw err;
 				} finally {
 					currentParser = null;
@@ -6355,6 +6366,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 				} else if (ret !== constants.ERROR.OK) {
 					const ptr = llhttp.llhttp_get_error_reason(this.ptr);
 					let message = "";
+					/* istanbul ignore else: difficult to make a test case for */
 					if (ptr) {
 						const len = new Uint8Array(llhttp.memory.buffer, ptr).indexOf(0);
 						message = "Response does not match the HTTP/1.1 protocol (" + Buffer.from(llhttp.memory.buffer, ptr, len).toString() + ")";
@@ -6381,6 +6393,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 		}
 		onMessageBegin() {
 			const { socket, client } = this;
+			/* istanbul ignore next: difficult to make a test case for */
 			if (socket.destroyed) return -1;
 			const request$1 = client[kQueue$1][client[kRunningIdx]];
 			if (!request$1) return -1;
@@ -6440,8 +6453,10 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 		}
 		onHeadersComplete(statusCode, upgrade$1, shouldKeepAlive) {
 			const { client, socket, headers, statusText } = this;
+			/* istanbul ignore next: difficult to make a test case for */
 			if (socket.destroyed) return -1;
 			const request$1 = client[kQueue$1][client[kRunningIdx]];
+			/* istanbul ignore next: difficult to make a test case for */
 			if (!request$1) return -1;
 			assert$13(!this.upgrade);
 			assert$13(this.statusCode < 200);
@@ -6460,6 +6475,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 				const bodyTimeout = request$1.bodyTimeout != null ? request$1.bodyTimeout : client[kBodyTimeout];
 				this.setTimeout(bodyTimeout, TIMEOUT_BODY);
 			} else if (this.timeout) {
+				// istanbul ignore else: only for jest
 				if (this.timeout.refresh) this.timeout.refresh();
 			}
 			if (request$1.method === "CONNECT") {
@@ -6500,6 +6516,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 			assert$13(request$1);
 			assert$13.strictEqual(this.timeoutType, TIMEOUT_BODY);
 			if (this.timeout) {
+				// istanbul ignore else: only for jest
 				if (this.timeout.refresh) this.timeout.refresh();
 			}
 			assert$13(statusCode >= 200);
@@ -6527,6 +6544,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 			this.headers = [];
 			this.headersSize = 0;
 			if (statusCode < 200) return;
+			/* istanbul ignore next: should be handled by llhttp? */
 			if (request$1.method !== "HEAD" && contentLength && bytesRead !== parseInt(contentLength, 10)) {
 				util$11.destroy(socket, new ResponseContentLengthMismatchError());
 				return -1;
@@ -6549,6 +6567,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 	};
 	function onParserTimeout(parser) {
 		const { socket, timeoutType, client } = parser;
+		/* istanbul ignore else */
 		if (timeoutType === TIMEOUT_HEADERS) {
 			if (!socket[kWriting] || socket.writableNeedDrain || client[kRunning$3] > 1) {
 				assert$13(!parser.paused, "cannot be paused while waiting for headers");
@@ -6873,6 +6892,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 			headers: header,
 			socket
 		});
+		/* istanbul ignore else: assertion */
 		if (!body || bodyLength$1 === 0) {
 			if (contentLength === 0) socket.write(`${header}content-length: 0\r\n\r\n`, "latin1");
 			else {
@@ -6934,7 +6954,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 		if (typeof reqHeaders === "string") headers = Request$3[kHTTP2CopyHeaders](reqHeaders.trim());
 		else headers = reqHeaders;
 		if (upgrade$1) {
-			errorRequest(client, request$1, new Error("Upgrade not supported for H2"));
+			errorRequest(client, request$1, /* @__PURE__ */ new Error("Upgrade not supported for H2"));
 			return false;
 		}
 		try {
@@ -7035,6 +7055,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 		});
 		return true;
 		function writeBodyH2() {
+			/* istanbul ignore else: assertion */
 			if (!body) request$1.onRequestSent();
 			else if (util$11.isBuffer(body)) {
 				assert$13(contentLength === body.byteLength, "buffer body must have content length");
@@ -7263,6 +7284,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 			request$1.onBodySent(chunk);
 			if (!ret) {
 				if (socket[kParser].timeout && socket[kParser].timeoutType === TIMEOUT_HEADERS) {
+					// istanbul ignore else: only for jest
 					if (socket[kParser].timeout.refresh) socket[kParser].timeout.refresh();
 				}
 			}
@@ -7280,6 +7302,7 @@ var require_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 			if (contentLength !== null && bytesWritten !== contentLength) if (client[kStrictContentLength]) throw new RequestContentLengthMismatchError();
 			else process.emitWarning(new RequestContentLengthMismatchError());
 			if (socket[kParser].timeout && socket[kParser].timeoutType === TIMEOUT_HEADERS) {
+				// istanbul ignore else: only for jest
 				if (socket[kParser].timeout.refresh) socket[kParser].timeout.refresh();
 			}
 			resume(client);
@@ -7679,6 +7702,7 @@ var require_balanced_pool = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_
 //#endregion
 //#region node_modules/.pnpm/undici@5.28.5/node_modules/undici/lib/compat/dispatcher-weakref.js
 var require_dispatcher_weakref = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules/undici/lib/compat/dispatcher-weakref.js"(exports, module) {
+	/* istanbul ignore file: only for Node 12 */
 	const { kConnected: kConnected$2, kSize } = require_symbols$4();
 	var CompatWeakRef = class {
 		constructor(value) {
@@ -7747,14 +7771,14 @@ var require_agent = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules/
 			this[kOptions$1].interceptors = options.interceptors ? { ...options.interceptors } : void 0;
 			this[kMaxRedirections] = maxRedirections;
 			this[kFactory$1] = factory;
-			this[kClients$1] = new Map();
+			this[kClients$1] = /* @__PURE__ */ new Map();
 			this[kFinalizer] = new FinalizationRegistry$1(
 				/* istanbul ignore next: gc is undeterministic */
 				(key) => {
 					const ref = this[kClients$1].get(key);
 					if (ref !== void 0 && ref.deref() === void 0) this[kClients$1].delete(key);
 				}
-);
+			);
 			const agent = this;
 			this[kOnDrain] = (origin, targets) => {
 				agent.emit("drain", origin, [agent, ...targets]);
@@ -7773,6 +7797,7 @@ var require_agent = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules/
 			let ret = 0;
 			for (const ref of this[kClients$1].values()) {
 				const client = ref.deref();
+				/* istanbul ignore next: gc is undeterministic */
 				if (client) ret += client[kRunning];
 			}
 			return ret;
@@ -7794,6 +7819,7 @@ var require_agent = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules/
 			const closePromises = [];
 			for (const ref of this[kClients$1].values()) {
 				const client = ref.deref();
+				/* istanbul ignore else: gc is undeterministic */
 				if (client) closePromises.push(client.close());
 			}
 			await Promise.all(closePromises);
@@ -7802,6 +7828,7 @@ var require_agent = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules/
 			const destroyPromises = [];
 			for (const ref of this[kClients$1].values()) {
 				const client = ref.deref();
+				/* istanbul ignore else: gc is undeterministic */
 				if (client) destroyPromises.push(client.destroy(err));
 			}
 			await Promise.all(destroyPromises);
@@ -7916,7 +7943,7 @@ var require_readable = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modul
 				}) : noop;
 				this.on("close", function() {
 					signalListenerCleanup();
-					if (signal && signal.aborted) reject(signal.reason || Object.assign(new Error("The operation was aborted"), { name: "AbortError" }));
+					if (signal && signal.aborted) reject(signal.reason || Object.assign(/* @__PURE__ */ new Error("The operation was aborted"), { name: "AbortError" }));
 					else resolve(null);
 				}).on("error", noop).on("data", function(chunk) {
 					limit -= chunk.length;
@@ -8959,6 +8986,9 @@ var require_mock_interceptor = __commonJS({ "node_modules/.pnpm/undici@5.28.5/no
 	const { kDispatches: kDispatches$3, kDispatchKey, kDefaultHeaders, kDefaultTrailers, kContentLength, kMockDispatch } = require_mock_symbols();
 	const { InvalidArgumentError: InvalidArgumentError$6 } = require_errors();
 	const { buildURL } = require_util$6();
+	/**
+	* Defines the scope API for an interceptor reply
+	*/
 	var MockScope = class {
 		constructor(mockDispatch$1) {
 			this[kMockDispatch] = mockDispatch$1;
@@ -8987,6 +9017,9 @@ var require_mock_interceptor = __commonJS({ "node_modules/.pnpm/undici@5.28.5/no
 			return this;
 		}
 	};
+	/**
+	* Defines an interceptor for a Mock
+	*/
 	var MockInterceptor$2 = class {
 		constructor(opts, mockDispatches) {
 			if (typeof opts !== "object") throw new InvalidArgumentError$6("opts must be an object");
@@ -9095,6 +9128,9 @@ var require_mock_client = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_mo
 	const { MockInterceptor: MockInterceptor$1 } = require_mock_interceptor();
 	const Symbols$1 = require_symbols$4();
 	const { InvalidArgumentError: InvalidArgumentError$5 } = require_errors();
+	/**
+	* MockClient provides an API that extends the Client to influence the mockDispatches.
+	*/
 	var MockClient$2 = class extends Client$1 {
 		constructor(origin, opts) {
 			super(origin, opts);
@@ -9136,6 +9172,9 @@ var require_mock_pool = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modu
 	const { MockInterceptor } = require_mock_interceptor();
 	const Symbols = require_symbols$4();
 	const { InvalidArgumentError: InvalidArgumentError$4 } = require_errors();
+	/**
+	* MockPool provides an API that extends the Pool to influence the mockDispatches.
+	*/
 	var MockPool$2 = class extends Pool$2 {
 		constructor(origin, opts) {
 			super(origin, opts);
@@ -10118,7 +10157,7 @@ var require_response = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modul
 			try {
 				parsedURL = new URL(url, getGlobalOrigin$2());
 			} catch (err) {
-				throw Object.assign(new TypeError("Failed to parse URL from " + url), { cause: err });
+				throw Object.assign(/* @__PURE__ */ new TypeError("Failed to parse URL from " + url), { cause: err });
 			}
 			if (!redirectStatusSet$1.has(status)) throw new RangeError("Invalid status code " + status);
 			const responseObject = new Response$2();
@@ -10894,7 +10933,7 @@ var require_fetch = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules/
 				return Promise.resolve();
 			}
 			if (response.type === "error") {
-				p.reject(Object.assign(new TypeError("fetch failed"), { cause: response.error }));
+				p.reject(Object.assign(/* @__PURE__ */ new TypeError("fetch failed"), { cause: response.error }));
 				return Promise.resolve();
 			}
 			responseObject = new Response$1();
@@ -11232,7 +11271,6 @@ var require_fetch = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules/
 			if (httpRequest.mode === "only-if-cached") return makeNetworkError("only if cached");
 			const forwardResponse = await httpNetworkFetch(httpFetchParams, includeCredentials, isNewConnectionFetch);
 			if (!safeMethodsSet.has(httpRequest.method) && forwardResponse.status >= 200 && forwardResponse.status <= 399) {}
-			if (revalidatingFlag && forwardResponse.status === 304) {}
 			if (response == null) response = forwardResponse;
 		}
 		response.urlList = [...httpRequest.urlList];
@@ -11513,6 +11551,9 @@ var require_symbols$2 = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modu
 var require_progressevent = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules/undici/lib/fileapi/progressevent.js"(exports, module) {
 	const { webidl: webidl$6 } = require_webidl();
 	const kState$3 = Symbol("ProgressEvent state");
+	/**
+	* @see https://xhr.spec.whatwg.org/#progressevent
+	*/
 	var ProgressEvent$1 = class ProgressEvent$1 extends Event {
 		constructor(type, eventInitDict = {}) {
 			type = webidl$6.converters.DOMString(type);
@@ -12272,6 +12313,18 @@ var require_cache = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules/
 	const { urlIsHttpHttpsScheme, createDeferredPromise, readAllBytes } = require_util$5();
 	const assert$2 = require("assert");
 	const { getGlobalDispatcher: getGlobalDispatcher$3 } = require_global();
+	/**
+	* @see https://w3c.github.io/ServiceWorker/#dfn-cache-batch-operation
+	* @typedef {Object} CacheBatchOperation
+	* @property {'delete' | 'put'} type
+	* @property {any} request
+	* @property {any} response
+	* @property {import('../../types/cache').CacheQueryOptions} options
+	*/
+	/**
+	* @see https://w3c.github.io/ServiceWorker/#dfn-request-response-list
+	* @typedef {[any, any][]} requestResponseList
+	*/
 	var Cache$1 = class Cache$1 {
 		/**
 		* @see https://w3c.github.io/ServiceWorker/#dfn-relevant-request-response-list
@@ -12709,7 +12762,7 @@ var require_cachestorage = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_m
 		* @see https://w3c.github.io/ServiceWorker/#dfn-relevant-name-to-cache-map
 		* @type {Map<string, import('./cache').requestResponseList}
 		*/
-		#caches = new Map();
+		#caches = /* @__PURE__ */ new Map();
 		constructor() {
 			if (arguments[0] !== kConstruct) webidl$3.illegalConstructor();
 		}
@@ -13162,7 +13215,7 @@ var require_cookies = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_module
 		setCookie(headers, {
 			name,
 			value: "",
-			expires: new Date(0),
+			expires: /* @__PURE__ */ new Date(0),
 			...attributes
 		});
 	}
@@ -13327,6 +13380,9 @@ var require_events = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 	const { webidl: webidl$1 } = require_webidl();
 	const { kEnumerableProperty: kEnumerableProperty$1 } = require_util$6();
 	const { MessagePort } = require("worker_threads");
+	/**
+	* @see https://html.spec.whatwg.org/multipage/comms.html#messageevent
+	*/
 	var MessageEvent$1 = class MessageEvent$1 extends Event {
 		#eventInit;
 		constructor(type, eventInitDict = {}) {
@@ -13371,6 +13427,9 @@ var require_events = __commonJS({ "node_modules/.pnpm/undici@5.28.5/node_modules
 			});
 		}
 	};
+	/**
+	* @see https://websockets.spec.whatwg.org/#the-closeevent-interface
+	*/
 	var CloseEvent$1 = class CloseEvent$1 extends Event {
 		#eventInit;
 		constructor(type, eventInitDict = {}) {
@@ -14836,7 +14895,7 @@ var require_lib = __commonJS({ "node_modules/.pnpm/@actions+http-client@2.2.3/no
 				return new Promise((resolve, reject) => {
 					function callbackForResult(err, res) {
 						if (err) reject(err);
-						else if (!res) reject(new Error("Unknown error"));
+						else if (!res) reject(/* @__PURE__ */ new Error("Unknown error"));
 						else resolve(res);
 					}
 					this.requestRawWithCallback(info$1, data, callbackForResult);
@@ -14871,7 +14930,7 @@ var require_lib = __commonJS({ "node_modules/.pnpm/@actions+http-client@2.2.3/no
 			});
 			req.setTimeout(this._socketTimeout || 3 * 6e4, () => {
 				if (socket) socket.end();
-				handleResult(new Error(`Request timeout: ${info$1.options.path}`));
+				handleResult(/* @__PURE__ */ new Error(`Request timeout: ${info$1.options.path}`));
 			});
 			req.on("error", function(err) {
 				handleResult(err);
@@ -16241,7 +16300,7 @@ var require_toolrunner = __commonJS({ "node_modules/.pnpm/@actions+exec@1.1.1/no
 					state.on("debug", (message) => {
 						this._debug(message);
 					});
-					if (this.options.cwd && !(yield ioUtil.exists(this.options.cwd))) return reject(new Error(`The cwd: ${this.options.cwd} does not exist!`));
+					if (this.options.cwd && !(yield ioUtil.exists(this.options.cwd))) return reject(/* @__PURE__ */ new Error(`The cwd: ${this.options.cwd} does not exist!`));
 					const fileName = this._getSpawnFileName();
 					const cp$1 = child.spawn(fileName, this._getSpawnArgs(optionsNonNull), this._getSpawnOptions(this.options, fileName));
 					let stdbuffer = "";
@@ -16370,9 +16429,9 @@ var require_toolrunner = __commonJS({ "node_modules/.pnpm/@actions+exec@1.1.1/no
 		_setResult() {
 			let error$1;
 			if (this.processExited) {
-				if (this.processError) error$1 = new Error(`There was an error when attempting to execute the process '${this.toolPath}'. This may indicate the process failed to start. Error: ${this.processError}`);
-				else if (this.processExitCode !== 0 && !this.options.ignoreReturnCode) error$1 = new Error(`The process '${this.toolPath}' failed with exit code ${this.processExitCode}`);
-				else if (this.processStderr && this.options.failOnStdErr) error$1 = new Error(`The process '${this.toolPath}' failed because one or more lines were written to the STDERR stream`);
+				if (this.processError) error$1 = /* @__PURE__ */ new Error(`There was an error when attempting to execute the process '${this.toolPath}'. This may indicate the process failed to start. Error: ${this.processError}`);
+				else if (this.processExitCode !== 0 && !this.options.ignoreReturnCode) error$1 = /* @__PURE__ */ new Error(`The process '${this.toolPath}' failed with exit code ${this.processExitCode}`);
+				else if (this.processStderr && this.options.failOnStdErr) error$1 = /* @__PURE__ */ new Error(`The process '${this.toolPath}' failed because one or more lines were written to the STDERR stream`);
 			}
 			if (this.timeout) {
 				clearTimeout(this.timeout);
@@ -17005,10 +17064,10 @@ var require_core = __commonJS({ "node_modules/.pnpm/@actions+core@1.11.1/node_mo
 	*/
 	exports.platform = __importStar(require_platform());
 } });
-var import_core = __toESM(require_core(), 1);
 
 //#endregion
 //#region src/index.ts
+var import_core = __toESM(require_core(), 1);
 async function run() {
 	import_core.info("This is a template action");
 	const nameToGreet = import_core.getInput("who-to-greet");
