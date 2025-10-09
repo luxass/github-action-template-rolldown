@@ -8,7 +8,7 @@
     "email": "lucasnrgaard@gmail.com",
     "url": "https://luxass.dev"
   },
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.18.1",
   "license": "MIT",
   "main": "dist/index.cjs",
   "scripts": {
@@ -20,12 +20,12 @@
     "@actions/core": "^1.11.1"
   },
   "devDependencies": {
-    "@luxass/eslint-config": "^5.3.0",
+    "@luxass/eslint-config": "^5.3.2",
     "@types/node": "^22.0.0",
-    "eslint": "^9.34.0",
-    "eslint-plugin-format": "^1.0.1",
-    "rolldown": "1.0.0-beta.34",
-    "typescript": "^5.9.2"
+    "eslint": "^9.37.0",
+    "eslint-plugin-format": "^1.0.2",
+    "rolldown": "1.0.0-beta.42",
+    "typescript": "^5.9.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
