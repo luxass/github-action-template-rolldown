@@ -10,7 +10,7 @@
   },
   "packageManager": "pnpm@10.19.0",
   "license": "MIT",
-  "main": "dist/index.cjs",
+  "main": "dist/index.mjs",
   "scripts": {
     "build": "rolldown --config ./rolldown.config.mjs",
     "lint": "eslint .",
