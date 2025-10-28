@@ -17,14 +17,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@actions/core": "^1.11.1"
+    "@actions/core": "1.11.1"
   },
   "devDependencies": {
-    "@luxass/eslint-config": "^6.0.1",
-    "@types/node": "^22.0.0",
-    "eslint": "^9.38.0",
-    "eslint-plugin-format": "^1.0.2",
+    "@types/node": "22.0.0",
+    "eslint": "9.38.0",
     "rolldown": "1.0.0-beta.45",
-    "typescript": "^5.9.3"
+    "typescript": "5.9.3"
   }
 }
