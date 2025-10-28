@@ -98,11 +98,7 @@ var require_command = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/@actions+
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.issue = exports.issueCommand = void 0;
-<<<<<<< HEAD:dist/index.cjs
-	const os$3 = __importStar$9(require("os"));
-=======
 	const os$3 = __importStar$9(__require("os"));
->>>>>>> 69ea310 (chore: switch to esm):dist/index.mjs
 	const utils_1$3 = require_utils$1();
 	/**
 	* Commands
@@ -193,15 +189,9 @@ var require_file_command = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/@act
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.prepareKeyValueMessage = exports.issueFileCommand = void 0;
-<<<<<<< HEAD:dist/index.cjs
-	const crypto$3 = __importStar$8(require("crypto"));
-	const fs$1 = __importStar$8(require("fs"));
-	const os$2 = __importStar$8(require("os"));
-=======
 	const crypto$3 = __importStar$8(__require("crypto"));
 	const fs$1 = __importStar$8(__require("fs"));
 	const os$2 = __importStar$8(__require("os"));
->>>>>>> 69ea310 (chore: switch to esm):dist/index.mjs
 	const utils_1$2 = require_utils$1();
 	function issueFileCommand(command, message) {
 		const filePath = process.env[`GITHUB_${command}`];
@@ -14509,13 +14499,8 @@ var require_lib = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/@actions+http
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.HttpClient = exports.isHttps = exports.HttpClientResponse = exports.HttpClientError = exports.getProxyUrl = exports.MediaTypes = exports.Headers = exports.HttpCodes = void 0;
-<<<<<<< HEAD:dist/index.cjs
-	const http = __importStar$7(require("http"));
-	const https = __importStar$7(require("https"));
-=======
 	const http = __importStar$7(__require("http"));
 	const https = __importStar$7(__require("https"));
->>>>>>> 69ea310 (chore: switch to esm):dist/index.mjs
 	const pm = __importStar$7(require_proxy());
 	const tunnel = __importStar$7(require_tunnel());
 	const undici_1 = require_undici();
@@ -15493,11 +15478,7 @@ var require_path_utils = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/@actio
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.toPlatformPath = exports.toWin32Path = exports.toPosixPath = void 0;
-<<<<<<< HEAD:dist/index.cjs
-	const path$4 = __importStar$6(require("path"));
-=======
 	const path$4 = __importStar$6(__require("path"));
->>>>>>> 69ea310 (chore: switch to esm):dist/index.mjs
 	/**
 	* toPosixPath converts the given path to the posix form. On Windows, \\ will be
 	* replaced with /.
@@ -15759,13 +15740,8 @@ var require_io = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/@actions+io@1.
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.findInPath = exports.which = exports.mkdirP = exports.rmRF = exports.mv = exports.cp = void 0;
-<<<<<<< HEAD:dist/index.cjs
-	const assert_1 = require("assert");
-	const path$2 = __importStar$4(require("path"));
-=======
 	const assert_1 = __require("assert");
 	const path$2 = __importStar$4(__require("path"));
->>>>>>> 69ea310 (chore: switch to esm):dist/index.mjs
 	const ioUtil$1 = __importStar$4(require_io_util());
 	/**
 	* Copies a file or folder.
@@ -16007,17 +15983,10 @@ var require_toolrunner = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/@actio
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.argStringToArray = exports.ToolRunner = void 0;
-<<<<<<< HEAD:dist/index.cjs
-	const os$1 = __importStar$3(require("os"));
-	const events = __importStar$3(require("events"));
-	const child = __importStar$3(require("child_process"));
-	const path$1 = __importStar$3(require("path"));
-=======
 	const os$1 = __importStar$3(__require("os"));
 	const events = __importStar$3(__require("events"));
 	const child = __importStar$3(__require("child_process"));
 	const path$1 = __importStar$3(__require("path"));
->>>>>>> 69ea310 (chore: switch to esm):dist/index.mjs
 	const io = __importStar$3(require_io());
 	const ioUtil = __importStar$3(require_io_util());
 	const timers_1 = __require("timers");
@@ -16414,11 +16383,7 @@ var require_exec = /* @__PURE__ */ __commonJS({ "node_modules/.pnpm/@actions+exe
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.getExecOutput = exports.exec = void 0;
-<<<<<<< HEAD:dist/index.cjs
-	const string_decoder_1 = require("string_decoder");
-=======
 	const string_decoder_1 = __require("string_decoder");
->>>>>>> 69ea310 (chore: switch to esm):dist/index.mjs
 	const tr = __importStar$2(require_toolrunner());
 	/**
 	* Exec a command.
