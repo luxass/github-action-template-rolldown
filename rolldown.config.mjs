@@ -5,10 +5,11 @@ import { defineConfig } from "rolldown";
 
 export default defineConfig({
   input: "./src/index.ts",
+  platform: "node",
   output: {
-    format: "cjs",
+    format: "esm",
     exports: "named",
-    entryFileNames: "index.cjs",
+    entryFileNames: "index.mjs",
   },
   resolve: {
     conditionNames: ["import"],
