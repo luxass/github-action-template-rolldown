@@ -17,7 +17,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@actions/core": "2.0.2"
+    "@actions/core": "3.0.0"
   },
   "devDependencies": {
     "@eslint/js": "9.39.2",
