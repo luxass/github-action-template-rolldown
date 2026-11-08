@@ -22,7 +22,7 @@
     "@actions/core": "3.0.1"
   },
   "devDependencies": {
-    "@types/node": "25.5.0",
+    "@types/node": "26.6.6",
     "oxfmt": "catalog:dev",
     "oxlint": "catalog:dev",
     "oxlint-tsgolint": "catalog:dev",
