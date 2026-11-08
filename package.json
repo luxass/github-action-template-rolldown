@@ -27,7 +27,7 @@
     "oxlint": "catalog:dev",
     "oxlint-tsgolint": "catalog:dev",
     "rolldown": "1.2.16",
-    "typescript": "5.9.3"
+    "typescript": "7.0.2"
   },
   "packageManager": "pnpm@12.17.0"
 }
