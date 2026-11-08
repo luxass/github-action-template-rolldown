@@ -29,5 +29,5 @@
     "rolldown": "1.2.16",
     "typescript": "5.9.3"
   },
-  "packageManager": "pnpm@12.15.0"
+  "packageManager": "pnpm@12.17.0"
 }
