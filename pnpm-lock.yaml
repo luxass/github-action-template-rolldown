@@ -173,17 +173,31 @@ catalogs:
     oxlint-tsgolint:
       specifier: 7.0.2005
       version: 7.0.2005
+    rolldown:
+      specifier: 1.2.16
+      version: 1.2.16
+    typescript:
+      specifier: 7.0.2
+      version: 7.0.2
+  runtime:
+    '@actions/core':
+      specifier: 3.0.1
+      version: 3.0.1
+  types:
+    '@types/node':
+      specifier: 26.6.6
+      version: 26.6.6
 
 importers:
 
   .:
     dependencies:
       '@actions/core':
-        specifier: 3.0.1
+        specifier: catalog:runtime
         version: 3.0.1
     devDependencies:
       '@types/node':
-        specifier: 26.6.6
+        specifier: catalog:types
         version: 26.6.6
       oxfmt:
         specifier: catalog:dev
@@ -195,10 +209,10 @@ importers:
         specifier: catalog:dev
         version: 7.0.2005
       rolldown:
-        specifier: 1.2.16
+        specifier: catalog:dev
         version: 1.2.16
       typescript:
-        specifier: 7.0.2
+        specifier: catalog:dev
         version: 7.0.2
 
 packages:
